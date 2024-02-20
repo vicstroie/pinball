@@ -25,6 +25,7 @@ public class Lightbridge : MonoBehaviour
             {
                 lightBridge.SetActive(false);
                 startTimer = false;
+                timer = 0;
             }
         }
         

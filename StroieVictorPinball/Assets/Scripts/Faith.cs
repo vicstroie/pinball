@@ -26,14 +26,17 @@ public class Faith : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        if (left)
-        {
-            rb.AddForce(new Vector2(1, 1) * 10, ForceMode2D.Impulse);
+        if(rb != null) {
+            if (left)
+            {
+                rb.AddForce(new Vector2(1, 1) * 10, ForceMode2D.Impulse);
+            }
+            else
+            {
+                rb.AddForce(new Vector2(-1, 1) * 10, ForceMode2D.Impulse);
+            }
         }
-        else {
-            rb.AddForce(new Vector2(-1, 1) * 10, ForceMode2D.Impulse);
-        }
+        
       
     }
 }
