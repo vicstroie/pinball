@@ -10,6 +10,7 @@ public class Hit : MonoBehaviour
     private Rigidbody2D _rb;
     public float thrust;
     private bool move;
+    public bool left;
 
 
     private void Start()
@@ -22,14 +23,28 @@ public class Hit : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+
+        if (left)
         {
-            move = true;
-           
-        }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            move = false;
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                move = true;
+
+            }
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                move = false;
+            }
+        } else  {
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                move = true;
+
+            }
+            if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                move = false;
+            }
         }
     }
 
@@ -37,7 +52,14 @@ public class Hit : MonoBehaviour
     {
         if(move)
         {
-            _rb.AddTorque(thrust, ForceMode2D.Impulse);
+            if(left) { 
+                _rb.AddTorque(thrust, ForceMode2D.Impulse); 
+            }
+            else
+            {
+                _rb.AddTorque(-thrust, ForceMode2D.Impulse);
+            }
+
             //Debug.Log("hit");
         }
     }
