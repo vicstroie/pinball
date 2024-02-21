@@ -7,6 +7,8 @@ public class Door : MonoBehaviour
     Rigidbody2D rb;
     BoxCollider2D bc;
     SpriteRenderer sr;
+
+    public GameObject manager;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,12 +17,15 @@ public class Door : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         sr.enabled = false;
         bc.isTrigger = true;
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Space)) {
+
+        if(manager.GetComponent<Spawner>().open) {
             sr.enabled = false;
             bc.isTrigger = true;
         }
@@ -30,5 +35,6 @@ public class Door : MonoBehaviour
     {
         bc.isTrigger = false;
         sr.enabled = true;
+        manager.GetComponent<Spawner>().CloseDoor();
     }
 }
